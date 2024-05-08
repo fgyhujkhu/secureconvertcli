@@ -1,8 +1,19 @@
-function minCostClimbingStairs(cost) {
-  const n = cost.length;
-  const dp = new Array(n + 1).fill(0);
-  for (let i = 2; i <= n; i++) {
-    dp[i] = Math.min(dp[i - 1] + cost[i - 1], dp[i - 2] + cost[i - 2]);
+function deserialize(data) {
+  if (!data.length) return null;
+  const root = new TreeNode(data.shift());
+  const queue = [root];
+  while (queue.length) {
+    const node = queue.shift();
+    const leftVal = data.shift();
+    if (leftVal !== undefined) {
+      node.left = new TreeNode(leftVal);
+      queue.push(node.left);
+    }
+    const rightVal = data.shift();
+    if (rightVal !== undefined) {
+      node.right = new TreeNode(rightVal);
+      queue.push(node.right);
+    }
   }
-  return dp[n];
+  return root;
 }
