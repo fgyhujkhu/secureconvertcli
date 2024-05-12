@@ -1,18 +1,16 @@
-const binarySearchRecursive = (
-  arr,
-  target,
-  left = 0,
-  right = arr.length - 1,
-) => {
-  if (left > right) {
-    return -1;
+function combine(n, k) {
+  const result = [];
+  backtrack(1, []);
+  return result;
+  function backtrack(start, current) {
+    if (current.length === k) {
+      result.push([...current]);
+      return;
+    }
+    for (let i = start; i <= n; i++) {
+      current.push(i);
+      backtrack(i + 1, current);
+      current.pop();
+    }
   }
-  const mid = Math.floor((left + right) / 2);
-  if (arr[mid] === target) {
-    return mid;
-  } else if (arr[mid] < target) {
-    return binarySearchRecursive(arr, target, mid + 1, right);
-  } else {
-    return binarySearchRecursive(arr, target, left, mid - 1);
-  }
-};
+}
