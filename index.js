@@ -1,16 +1,12 @@
-function combine(n, k) {
-  const result = [];
-  backtrack(1, []);
-  return result;
-  function backtrack(start, current) {
-    if (current.length === k) {
-      result.push([...current]);
-      return;
-    }
-    for (let i = start; i <= n; i++) {
-      current.push(i);
-      backtrack(i + 1, current);
-      current.pop();
+function moveZeroes(nums) {
+  let index = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== 0) {
+      nums[index++] = nums[i];
     }
   }
+  for (let i = index; i < nums.length; i++) {
+    nums[i] = 0;
+  }
+  return nums;
 }
